@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-blue-100">
+    <div class="p-8 max-w-md mx-auto">
+        <h1 class="text-center text-4xl font-bold mb-8 p-6">Manage Money Smarter, Live Better</h1>
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/019/857/514/small_2x/3d-illustration-of-financial-and-payment-concept-with-calculator-money-coin-and-credit-card-free-png.png" class="w-full h-64 "alt="">
+    </div>
+
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-4xl  mx-auto">
+        <h2 class="text-2xl font-bold text-center mb-6">Create an account</h2>
+        
+        <div class="space-y-4">
+            <input id="username" type="text" placeholder="Username"
+                class="block w-full rounded-md bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            <input id="password" type="password" placeholder="Password"
+                class="block w-full rounded-md bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            <input id="confirmpassword" type="password" placeholder="Confirm Password"
+                class="block w-full rounded-md bg-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            
+            <button type="button" onclick="register()"
+                class="w-full rounded-md bg-indigo-500 px-3 py-2 text-white hover:bg-indigo-400">Register</button>
+            
+            <p id="message" class="text-red-600 text-center font-semibold"></p>
+        </div>
+
+        <p class="mt-4 text-center">
+            Already have an account? 
+            <button onclick="window.location.href='index.html'" class="text-blue-600 hover:underline">Sign In</button>
+        </p>
+    </div>
+
+    <script>
+        
+        function register() {
+
+       
+            
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const confirm = document.getElementById("confirmpassword").value.trim();
+            const msg = document.getElementById("message");
+
+            if (!username || !password || !confirm) {
+            
+                
+                msg.textContent = "Please fill all fields.";
+                return;
+            }
+
+            if (password !== confirm) {
+                msg.textContent = "Passwords do not match!";
+                return;
+            }
+
+           
+
+// Always parse existing users as array
+    const users = JSON.parse(localStorage.getItem("userdata")) || [];
+console.log(users);
+
+    // Ensure it's an array (in case something wrong is stored)
+    // if (!Array.isArray(users)) {
+    //     users = [];
+    // }
+            // Check duplicate username
+            if (users.find(u => u.name === username)) {
+            
+                
+                msg.textContent = "Username already exists!"
+                return;
+            }
+
+            // Save new user
+            users.push({ name: username, pass: password });
+            localStorage.setItem("userdata", JSON.stringify(users));
+
+            alert(" Registration Successful!");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
