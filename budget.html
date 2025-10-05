@@ -13,8 +13,13 @@
       <div class="flex items-center space-x-2">
         <img src="https://static.vecteezy.com/system/resources/previews/065/718/904/non_2x/budget-planning-calculator-png.png" width="50px" height="50px"   alt="">
         <h1 class="text-4xl font-bold text-indigo-700">Budgetly</h1>
+         
+      </div>
+      <div>
+         <h2 id="head1" class="text-center text-indigo-700 font-bold text-xl"></h2>
       </div>
       <div class="space-x-6">
+        
           <a href="./index.html" class="text-xl hover:text-indigo-800">Home</a>
         <a href="./register.html" class="text-xl text-black-600 hover:text-indigo-800">Register</a>
         <a href="./login.html" class=" text-xl text-black-600 hover:text-indigo-800">Login</a>
@@ -22,6 +27,8 @@
     </div>
       </div>
     </div>
+   
+
   </header>
       
 
@@ -97,7 +104,7 @@ updatesummary();
   let list = document.getElementById("incomeList");
   let li = document.createElement("li");
   li.className = "flex justify-between p-2 bg-green-100 rounded-md";
-  li.innerHTML = `<span>${incometyp}</span><span>₹${incom}</span>`;
+  li.innerHTML = `<span>${incometyp}</span><span>Rs:${incom}</span>`;
   list.appendChild(li);
 
 
@@ -120,7 +127,7 @@ updatesummary();
 let list = document.getElementById("expenseList");
   let li = document.createElement("li");
   li.className = "flex justify-between p-2 bg-red-100 rounded-md";
-  li.innerHTML = `<span>${expensetyp}</span><span>₹${expens}</span>`;
+  li.innerHTML = `<span>${expensetyp}</span><span>Rs${expens}</span>`;
   list.appendChild(li);
     document.getElementById("expensetype").value = "";
         document.getElementById("expenseamount").value = "";
@@ -128,9 +135,9 @@ let list = document.getElementById("expenseList");
 }
 function updatesummary(){
 let balance = totalincome - totalexpense;
-        document.getElementById("totalincome").textContent = `Total income: ₹${totalincome}`;
-        document.getElementById("totalexpense").textContent = `Total expense: ₹${totalexpense}`;
-        document.getElementById("balance").textContent = `Balance: ₹${balance}`;
+        document.getElementById("totalincome").textContent = `Total income: Rs${totalincome}`;
+        document.getElementById("totalexpense").textContent = `Total expense: Rs${totalexpense}`;
+        document.getElementById("balance").textContent = `Balance: Rs${balance}`;
         }
         function logout(){
           localStorage.removeItem('user1');
